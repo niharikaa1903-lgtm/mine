@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>For You 💌</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400&family=Playfair+Display&display=swap" rel="stylesheet">
+
+<style>
+body {
+  margin: 0;
+  font-family: 'Poppins', sans-serif;
+  background: linear-gradient(135deg, #ffd6e0, #ffeef2);
+  overflow-x: hidden;
+  color: #444;
+  text-align: center;
+}
+
+/* Floating hearts */
+.heart {
+  position: fixed;
+  color: rgba(255, 77, 109, 0.5);
+  animation: floatUp 6s linear infinite;
+  z-index: 1;
+}
+
+@keyframes floatUp {
+  0% { transform: translateY(100vh); opacity: 1; }
+  100% { transform: translateY(-10vh); opacity: 0; }
+}
+
+/* Content */
+.container {
+  position: relative;
+  z-index: 2;
+  padding: 60px 20px;
+}
+
+h1 {
+  font-family: 'Playfair Display', serif;
+  font-size: 42px;
+  color: #ff4d6d;
+}
+
+p {
+  max-width: 700px;
+  margin: 20px auto;
+  font-size: 18px;
+  line-height: 1.9;
+}
+
+/* Button */
+button {
+  padding: 12px 25px;
+  border: none;
+  border-radius: 30px;
+  background: #ff4d6d;
+  color: white;
+  font-size: 16px;
+  cursor: pointer;
+  margin-top: 20px;
+}
+
+/* Overlay start screen */
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: #ffeef2;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 5;
+  flex-direction: column;
+}
+
+/* Popup */
+.popup {
+  display: none;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: white;
+  padding: 25px;
+  border-radius: 20px;
+  width: 80%;
+  max-width: 400px;
+  z-index: 4;
+}
+
+/* No button */
+#noBtn {
+  position: absolute;
+}
+
+</style>
+</head>
+
+<body>
+
+<!-- MUSIC -->
+<audio id="music" loop>
+  <source src="song.mp3" type="audio/mpeg">
+</audio>
+
+<!-- START SCREEN -->
+<div class="overlay" id="start">
+  <h1>For You 💌</h1>
+  <button onclick="startExperience()">Click to open 🥺</button>
+</div>
+
+<div class="container">
+
+<h1>I'm Sorry, MY LOVE 🥺💔</h1>
+
+<p>
+My love…  
+I wish you could see inside my heart right now, because it’s full of you… and only you.  
+Loving you has never been something I had to try for… it just happened so naturally, so deeply.  
+You became my safe place without even trying.
+</p>
+
+<p>
+And that’s why it hurts me so much… knowing that I hurt you.  
+I am so deeply sorry.  
+Not just for what I did, but for how it made you feel.  
+You never deserved that pain, not even for a second.
+</p>
+
+<p>
+I keep replaying everything in my mind… wishing I could undo it.  
+Because the thought of you being upset because of me… it breaks me in ways I can’t explain.  
+You are the one person I never want to lose.
+</p>
+
+<p>
+If this were a movie… this is the part where I run back to you,  
+hold your face, and tell you that you mean everything to me.  
+Because you do. You really, really do.
+</p>
+
+<p>
+I don’t want a perfect love… I just want us.  
+But I promise, I will grow, I will learn, and I will love you better every single day.
+</p>
+
+<button onclick="openLetter()">Open my heart 💌</button>
+
+<div class="popup" id="letter">
+  <p>
+    I love you more than my mistakes, more than my pride, more than anything.  
+    You are my person… and I never want to hurt you again.  
+
+    Please forgive me amuu? 🥺💗  
+  </p>
+  <button onclick="closeLetter()">Close</button>
+</div>
+
+<h2>Do you forgive me? 🥺</h2>
+
+<button onclick="yesClicked()">Yes 💖</button>
+<button id="noBtn" onmouseover="moveNo()">No 😭</button>
+
+<p id="result"></p>
+
+</div>
+
+<script>
+
+/* Start */
+function startExperience() {
+  document.getElementById("start").style.display = "none";
+  document.getElementById("music").play();
+}
+
+/* Popup */
+function openLetter() {
+  document.getElementById("letter").style.display = "block";
+}
+function closeLetter() {
+  document.getElementById("letter").style.display = "none";
+}
+
+/* Yes */
+function yesClicked() {
+  document.getElementById("result").innerHTML = "I love you so much 😭💖";
+}
+
+/* No runs */
+function moveNo() {
+  let btn = document.getElementById("noBtn");
+  btn.style.top = Math.random() * window.innerHeight + "px";
+  btn.style.left = Math.random() * window.innerWidth + "px";
+}
+
+/* Hearts */
+function createHeart() {
+  const heart = document.createElement("div");
+  heart.classList.add("heart");
+  heart.innerHTML = "❤";
+  heart.style.left = Math.random() * 100 + "vw";
+  heart.style.fontSize = Math.random() * 20 + 15 + "px";
+  document.body.appendChild(heart);
+  setTimeout(() => heart.remove(), 6000);
+}
+
+setInterval(createHeart, 300);
+
+</script>
+
+</body>
+</html>
